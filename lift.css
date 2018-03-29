@@ -1,0 +1,167 @@
+#Building {
+	width: 300px;
+	position: relative;
+	background: black;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.Floor {
+	width: 100%;
+	font-size: 28px;
+	color: white;
+	border: 1px solid white;
+	overflow: hidden;
+}
+
+.Floor .floorName {
+    display: inline-block;
+    padding: 10px 0 0 6px;
+    width: 45px;
+    height: 100%;
+    vertical-align: middle;
+    border-right: 1px solid white;
+}
+
+.Floor .buttonPanel {
+	display: inline-block;
+	width: 40px;
+	vertical-align: middle;
+	padding: 2px;
+	float: right;
+	height: 100%;
+	text-align: center;
+	font-size: 18px;
+	border-left: 1px solid white;
+}
+
+.Floor .buttonPanel button {
+	background: black;
+	color: white;
+}
+
+.Floor .buttonPanel button.active {
+	border: 4px solid crimson;
+	color: black;
+	background: white;
+}
+
+.Floor .currentfloorInfo {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    color: red;
+    border-right:1px solid white;
+    height: 100%;
+    font-size: 12pt;
+    background: black;
+    margin-left: -8px;
+}
+
+.Floor .currentfloorInfo::before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	width: 0px;
+	vertical-align: middle;
+}
+
+.Floor .currentfloorInfo > .currentFloorDir {
+	display: inline-block;
+	height: 20px;
+}
+
+.Floor .currentfloorInfo > .currentFloorDir > .up {
+	position: relative;
+	font-size: 15pt;
+}
+
+.Floor .currentfloorInfo > .currentFloorDir > .down {
+	position: relative;
+	font-size: 15pt;
+}
+
+.move-up {
+	 -webkit-animation: move_up 1s infinite; /* Safari 4.0 - 8.0 */
+    animation: move_up 1s infinite;
+}
+
+.move-down {
+	 -webkit-animation: move_down 1s infinite; /* Safari 4.0 - 8.0 */
+    animation: move_down 1s infinite;
+}
+
+.Floor .currentfloorInfo > .currentFloorId {
+	display: inline-block;
+	font-weight: bold;
+}
+
+
+#Lift {
+	text-align: center;
+	position: absolute;
+	margin-left: 88px;
+	bottom: 0px;
+	background: #bf7c49;
+	width: 169px;
+	transition: bottom 0.2s linear;
+	overflow: hidden;
+}
+
+#Lift .lift-left-door {
+	width: 50%;
+	height: 100%;
+	float: left;
+	margin-left: 0px;
+	border-right: 1px solid black;
+	background: red;
+	transform: translate3d(0, 0, 0);
+	transition: transform 0.8s linear;
+}
+
+#Lift .lift-right-door {
+	width: 50%;
+	height: 100%;
+	float: right;
+	margin-right: 0px;
+	border-left: 1px solid black;
+	background: red;
+	transform: translate3d(0, 0, 0);
+	transition: transform 0.8s linear;
+}
+
+#Lift .lift-left-door.door-open {
+	transform: translate3d(-90%, 0, 0);
+}
+
+#Lift .lift-right-door.door-open {
+	transform: translate3d(90%, 0, 0);
+}
+
+#Lift .lift-left-door.door-close {
+	transform: translate3d(0%, 0, 0);
+}
+
+#Lift .lift-right-door.door-close {
+	transform: translate3d(0%, 0, 0);
+}
+
+
+.lift-button-panel {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.lift-button-panel .btn {
+	margin: 2px;
+}
+
+@keyframes move_up {
+    from {top: 40px;}
+    to {top: -40px;}
+}
+
+@keyframes move_down {
+    from {top: -40px;}
+    to {top: 40px;}
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="liftApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel = "stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel = "stylesheet">
+	<link href="https://code.jquery.com/ui/1.12.0/themes/flick/jquery-ui.min.css" rel="stylesheet">
+
+	<link href="lift.css" rel="stylesheet">
+</head>
+
+<body ng-controller="liftController">
+	<!-- WRITE YOUR CODE HERE-->
+
+	<div id="Building">
+		<div class="Floor" ng-repeat="floor in building.floors" ng-style="{'height': floorHeight}">
+			<div class="floorName">{{floor.id}}</div>
+			<div class="currentfloorInfo">
+				<div class="currentFloorDir">
+					<span class="up" ng-class="{'move-up': lift.isRunning}"> <i class="fa fa-long-arrow-up" ng-if="building.lift.direction == 1"></i> </span>
+					<span class="down" ng-class="{'move-down': lift.isRunning}"> <i class="fa fa-long-arrow-down" ng-if="building.lift.direction == -1"></i> </span>
+				</div>
+				<div class="currentFloorId">
+					{{building.lift.currentFloorId}}
+				</div>
+			</div>
+			<div class="buttonPanel">
+				<button class="button-up" ng-class="{'active': isRequested(floor.id, 1)}" ng-if="floor.id != building.floorCount" ng-click="floor.callLift(1)">
+					<i class="fa fa-angle-up"></i>
+				</button>
+				<i class="fa fa-circle" ng-if="(floor.id == building.floorCount && isRequested(floor.id, 1))" style="color: red"></i>
+				<i class="fa fa-circle" ng-if="(floor.id == 1) && isRequested(floor.id, -1)" style="color: red"></i>
+				<button class="button-down" ng-class="{'active': isRequested(floor.id, -1)}" ng-if="floor.id != 1" ng-click="floor.callLift(-1)">
+					<i class="fa fa-angle-down"></i>
+				</button>
+			</div>
+		</div>
+		<div id="Lift" ng-style="{'height': floorHeight - 1, 'bottom':building.lift.position}">
+			<div class="lift-left-door" ng-class="{'door-open': lift.doorOpen, 'door-close': !lift.doorOpen}"></div>
+			<div class="lift-right-door" ng-class="{'door-open': lift.doorOpen, 'door-close': !lift.doorOpen}"></div>
+		</div>
+	</div>
+
+	<!--<div class="" >-->
+		<!--<div></div>-->
+		<div class="lift-button-panel">
+			<button ng-repeat="floor in building.floors"  class="btn btn-sm btn-info"
+			        ng-click="building.lift.acceptRequest(floor.id)">
+				{{floor.id}}
+			</button>
+		</div>
+
+	<audio controls style="display: none" id="LiftAudio">
+	  <source src="ding.mp3" type="audio/mpeg">
+	</audio>
+	<!--</div>-->
+
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap.min.js"></script>
+
+	<script src="app.js"></script>
+</body>
+</html>
